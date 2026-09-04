@@ -1,0 +1,401 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: #000;
+}
+
+body {
+  overflow-x: hidden;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tela {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 20px 80px;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(150, 80, 255, 0.15),
+      transparent 35%
+    ),
+    #000;
+
+  overflow: hidden;
+}
+
+/* ESTRELAS */
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(180,150,255,0.7) 1px, transparent 1px);
+
+  background-size: 90px 90px, 150px 150px;
+  background-position: 10px 20px, 50px 80px;
+
+  opacity: 0.35;
+}
+
+/* TOPO */
+
+.topo {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.logo {
+  width: min(430px, 75vw);
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 12px rgba(150, 80, 255, 0.5))
+    drop-shadow(0 0 25px rgba(255, 80, 200, 0.25));
+}
+
+.subtitulo {
+  margin-top: -5px;
+
+  color: #fff;
+
+  font-size: clamp(15px, 2vw, 21px);
+  font-weight: 400;
+
+  letter-spacing: 2px;
+  text-align: center;
+
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.5),
+    0 0 18px rgba(160,100,255,0.5);
+}
+
+/* PALCO */
+
+.palco {
+  position: relative;
+  z-index: 2;
+
+  width: min(650px, 90vw);
+  height: min(520px, 55vh);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+
+  perspective: 1000px;
+}
+
+/* AURA ATRÁS DA PERSONAGEM */
+
+.aura {
+  position: absolute;
+
+  width: 330px;
+  height: 330px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(180, 100, 255, 0.28) 0%,
+      rgba(120, 70, 255, 0.12) 40%,
+      transparent 70%
+    );
+
+  filter: blur(8px);
+
+  animation: respirarAura 4s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+@keyframes respirarAura {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* PERSONAGEM */
+
+.personagem-wrap {
+  position: relative;
+
+  width: min(360px, 65vw);
+  height: min(460px, 52vh);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.personagem {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter:
+    drop-shadow(0 15px 25px rgba(0,0,0,0.8))
+    drop-shadow(0 0 20px rgba(180,100,255,0.3));
+
+  animation:
+    flutuar 4s ease-in-out infinite,
+    brilhoPersonagem 3s ease-in-out infinite alternate;
+
+  transform-origin: center bottom;
+}
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes brilhoPersonagem {
+  from {
+    filter:
+      drop-shadow(0 15px 25px rgba(0,0,0,0.8))
+      drop-shadow(0 0 15px rgba(180,100,255,0.25));
+  }
+
+  to {
+    filter:
+      drop-shadow(0 18px 30px rgba(0,0,0,0.8))
+      drop-shadow(0 0 30px rgba(200,130,255,0.45));
+  }
+}
+
+/* BRILHO MÁGICO */
+
+.magia {
+  position: absolute;
+
+  font-size: 45px;
+
+  color: #fff;
+
+  text-shadow:
+    0 0 10px #fff,
+    0 0 25px #c78cff,
+    0 0 45px #8d4dff;
+
+  pointer-events: none;
+
+  animation:
+    magiaFlutua 3s ease-in-out infinite,
+    magiaGira 5s linear infinite;
+}
+
+@keyframes magiaFlutua {
+  0%,
+  100% {
+    transform: translate(150px, -130px) scale(0.7);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translate(170px, -160px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes magiaGira {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* BOTÃO */
+
+.btn-iniciar {
+  position: relative;
+  z-index: 10;
+
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 50px;
+
+  padding: 17px 38px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(160,80,255,0.95),
+      rgba(255,80,190,0.9)
+    );
+
+  color: #fff;
+
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 15px rgba(180,90,255,0.45),
+    0 0 35px rgba(255,80,190,0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-iniciar span {
+  margin-right: 8px;
+}
+
+.btn-iniciar:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 0 20px rgba(200,120,255,0.8),
+    0 0 50px rgba(255,100,200,0.4);
+}
+
+.btn-iniciar:active {
+  transform: scale(0.97);
+}
+
+/* TEXTO */
+
+.instrucao {
+  position: relative;
+  z-index: 5;
+
+  max-width: 600px;
+
+  margin-top: 18px;
+
+  color: rgba(255,255,255,0.72);
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+/* RODAPÉ */
+
+footer {
+  position: fixed;
+
+  bottom: 15px;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 20;
+
+  color: rgba(255,255,255,0.45);
+
+  font-size: 11px;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+  .tela {
+    padding-top: 20px;
+    padding-bottom: 70px;
+  }
+
+  .logo {
+    width: min(330px, 80vw);
+  }
+
+  .palco {
+    height: 50vh;
+  }
+
+  .personagem-wrap {
+    width: 75vw;
+    height: 48vh;
+  }
+
+  .aura {
+    width: 260px;
+    height: 260px;
+  }
+
+  .btn-iniciar {
+    padding: 15px 28px;
+  }
+}
+
+@media (max-height: 700px) {
+
+  .palco {
+    height: 42vh;
+  }
+
+  .personagem-wrap {
+    height: 42vh;
+  }
+
+  .logo {
+    width: 280px;
+  }
+}
