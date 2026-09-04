@@ -1,116 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
 
-  <head>
- <meta charset="UTF-8">
- <meta name="Viewport"
-   contente="width=device-width, initial-scale=1.0">
+  <title>QrMagicAr</title>
 
-    <title>QR Mágico</title>
-    <style>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: Arial, sans-serif;
-        mim-height: 100vh;
-        
-        display: flex;
-        align-items: center;
-        justify-content: ceter:
+<body>
 
-        background:
-        linear-gradient(
-          135deg,
-          #f8e8ff,
-          #e8f7ff
-          );
-        color: #333
-      }
-      .container {
-        width: 90%;
-        max-width: 500px;
-        background: white;
-        padding: 40px 25px;
-        border-rarius: 25px;
-        text-align: center;
+  <div class="stars"></div>
 
-      box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.12);
-      }
+  <main class="tela">
 
-      .logo {
-        font-size: 42px;
-        margin-bottom: 15px:
-      }
-      h1 {
-        font-size: 30px;
-        margin-bottom: 15px;
-      }
+    <header class="topo">
 
-      p {
-        font-size: 17px;
-        line-height: 1.5;
-        margin-bottom: 25px;
-      }
+      <img
+        src="assets/logo.png"
+        class="logo"
+        alt="QrMagicAr"
+      >
 
-      .botao {
-        display: inline-block;
-        padding: 15px 30px:
-      border-radius: 560px;
-        background: #7b2cff;
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.2s;
-      }
-      .botao:hover {
-        transform: scale(1.05);
-      }
+      <p class="subtitulo">
+        Aponte. Descubra. Encante-se.
+      </p>
 
-      .rodape {
-        margin-top: 30px;
+    </header>
 
-      font-size: 13px;
 
-      color: #888;
-      }
-      </style>
-    
-  </head>
-  
-  <body>
-    
-  <div class="container">
-    <div class="logo">
-      ✨📱
-    </div>
+    <section class="palco" id="palco">
 
-    <h1>
-      QR Mágico
-    </h1>
+      <div class="aura"></div>
 
-    <p>
-      Sua experiência começa aqui.
-      Em breve este QR Code poderá 
-      transformar imagens em experiências
-      de realidade aumentada.
+      <div class="personagem-wrap" id="personagemWrap">
+
+        <img
+          id="personagem"
+          src="assets/personagem.png"
+          class="personagem"
+          alt="Personagem mágica"
+        >
+
+      </div>
+
+      <div class="magia" id="magia">
+        ✦
+      </div>
+
+    </section>
+
+
+    <button
+      class="btn-iniciar"
+      id="btnIniciar"
+    >
+
+      <span>✦</span>
+
+      Começar Experiência
+
+    </button>
+
+
+    <p
+      class="instrucao"
+      id="instrucao"
+    >
+
+      Mova o cursor pela tela e a personagem acompanhará seus movimentos.
+
     </p>
 
-    <a href="#" class=batao">
-      Começar experiênca
-    </a>
+  </main>
 
-    <div class="rodape">
-      Tecnologia de Realidade Aumentada
-    </div>
 
-  </div>
+  <footer>
 
-  </body>
+    © 2026 QrMagicAr. Todos os direitos reservados.
 
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
 </html>
