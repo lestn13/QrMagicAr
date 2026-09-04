@@ -1,90 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
+    <meta charset="UTF-8">
 
-  <title>QrMagicAr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#000000">
+
+    <title>QrMagicAr</title>
+
+    <link rel="stylesheet" href="estilo.css">
 </head>
 
 <body>
 
-  <div class="stars"></div>
+    <div class="estrelas"></div>
 
-  <main class="tela">
+    <main class="palco">
 
-    <header class="topo">
+        <header class="cabecalho">
 
-      <img
-        src="assets/logo.png"
-        class="logo"
-        alt="QrMagicAr"
-      >
+            <img
+                class="logo"
+                src="logo.png"
+                alt="QrMagicAr"
+            >
 
-      <p class="subtitulo">
-        Aponte. Descubra. Encante-se.
-      </p>
+            <h1>QrMagicAr</h1>
 
-    </header>
+            <p class="subtitulo">
+                Transforme seus momentos em uma experiência mágica.
+            </p>
 
-
-    <section class="palco" id="palco">
-
-      <div class="aura"></div>
-
-      <div class="personagem-wrap" id="personagemWrap">
-
-        <img
-          id="personagem"
-          src="assets/personagem.png"
-          class="personagem"
-          alt="Personagem mágica"
-        >
-
-      </div>
-
-      <div class="magia" id="magia">
-        ✦
-      </div>
-
-    </section>
+        </header>
 
 
-    <button
-      class="btn-iniciar"
-      id="btnIniciar"
-    >
+        <section class="experiencia">
 
-      <span>✦</span>
+            <div class="personagem-wrap">
 
-      Começar Experiência
+                <img
+                    id="personagem"
+                    class="personagem"
+                    src="personagem.png"
+                    alt="Personagem"
+                >
 
-    </button>
-
-
-    <p
-      class="instrucao"
-      id="instrucao"
-    >
-
-      Mova o cursor pela tela e a personagem acompanhará seus movimentos.
-
-    </p>
-
-  </main>
+            </div>
 
 
-  <footer>
+            <div class="conteudo">
 
-    © 2026 QrMagicAr. Todos os direitos reservados.
+                <h2>
+                    Uma nova experiência começa aqui
+                </h2>
 
-  </footer>
+                <p class="instrucao">
+                    Mova o cursor pela tela e a personagem acompanhará seus movimentos.
+                </p>
+
+                <button
+                    id="btnIniciar"
+                    class="btn-iniciar"
+                    type="button"
+                >
+                    Começar experiência
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
 
 
-  <script src="script.js"></script>
+    <footer>
+
+        © 2026 QrMagicAr. Todos os direitos reservados.
+
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
