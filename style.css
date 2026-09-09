@@ -207,16 +207,13 @@ body {
 /* SPRITE 3x3 */
 
 .personagem {
+    .personagem {
     width: 260px;
     height: 415px;
-
     background-image: url("personagem.png");
-
-    background-repeat:no-repeat;
-
-    background-size: 300% 300%;
-
-    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     mix-blend-mode: screen;
 
     filter:
