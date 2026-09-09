@@ -1,109 +1,299 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#05000d">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personagem Interativa</title>
+<style>
+  :root{
+    --skin: #fdd0b3;
+    --lip: #e08e82;
+    --iris: #8f8ac2;
+    --pupil: #221826;
+  }
+  html,body{
+    height:100%;
+    margin:0;
+    background: radial-gradient(circle at 50% 30%, #241b3a 0%, #100a1c 70%);
+    overflow:hidden;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  #stage{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective: 1200px;
+  }
+  #floatWrap{
+    animation: idleFloat 4.5s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+  #tiltWrap{
+    position:relative;
+    width:min(78vw,420px);
+    transition: transform 120ms ease-out;
+    transform-style: preserve-3d;
+    cursor:pointer;
+    user-select:none;
+  }
+  #charImg{
+    display:block;
+    width:100%;
+    height:auto;
+    pointer-events:none;
+    filter: drop-shadow(0 25px 40px rgba(0,0,0,0.45));
+  }
+  #hairSway{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    transform-origin: 50% 8%;   /* pivota perto do topo da cabeça, como se fosse "preso" ali */
+    pointer-events:none;
+    will-change: transform;
+  }
+  #hairImg{
+    display:block;
+    width:100%;
+    height:auto;
+    pointer-events:none;
+  }
+  #effectsSway{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    transform-origin: 50% 50%;
+    pointer-events:none;
+    will-change: transform, opacity;
+    animation: effectsTwinkle 3.2s ease-in-out infinite;
+  }
+  #effectsImg{
+    display:block;
+    width:100%;
+    height:auto;
+    pointer-events:none;
+  }
+  @keyframes effectsTwinkle{
+    0%,100%{ opacity:0.85; }
+    50%{ opacity:1; }
+  }
+  .eye{
+    position:absolute;
+    width:3.6%;
+    height:2.6%;
+    border-radius:50%;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .eye-left{  left:42.1%; top:18.9%; width:4.5%; height:2.3%; }
+  .eye-right{ left:57.6%; top:17.9%; width:5.0%; height:2.5%; }
+  .pupil{
+    position:absolute;
+    left:50%; top:50%;
+    width:60%;
+    height:60%;
+    margin-left:-30%;
+    margin-top:-30%;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--iris), var(--pupil) 70%);
+    transition: transform 60ms linear;
+  }
+  .blink{
+    position:absolute;
+    left:50%; top:50%;
+    width:0%;
+    height:0%;
+    margin-left:0;
+    margin-top:0;
+    background: var(--skin);
+    border-radius:50% 50% 45% 45%;
+    pointer-events:none;
+    transform-origin:center;
+    transition: none;
+  }
+  .blink.active{
+    animation: blinkAnim 160ms ease-in-out;
+  }
+  .blink-left{ left:42.1%; top:18.6%; width:4.8%; height:0%; margin-left:-2.4%; }
+  .blink-right{ left:57.6%; top:17.6%; width:5.3%; height:0%; margin-left:-2.65%; }
 
-    <title>QrMagicAr</title>
+  #mouthOverlay{
+    position:absolute;
+    left:45.7%;
+    top:22.7%;
+    width:13%;
+    height:8%;
+    opacity:0;
+    transition: opacity 120ms ease;
+    pointer-events:none;
+  }
+  #mouthOverlay.show{ opacity:1; }
 
-    <link rel="stylesheet" href="style.css">
+  #hint{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#cfc3ea;
+    font-size:13px;
+    opacity:0.7;
+    text-align:center;
+    letter-spacing:.3px;
+  }
+
+  @keyframes idleFloat{
+    0%,100%{ transform: translateY(0px) rotate(0deg); }
+    50%{ transform: translateY(-10px) rotate(0.6deg); }
+  }
+  @keyframes blinkAnim{
+    0%{ height:0%; margin-top:0; }
+    50%{ height:3.6%; margin-top:-1.8%; }
+    100%{ height:0%; margin-top:0; }
+  }
+</style>
 </head>
-
 <body>
 
-    <div class="estrelas"></div>
-    <div class="brilho brilho-1"></div>
-    <div class="brilho brilho-2"></div>
+<div id="stage">
+  <div id="floatWrap">
+    <div id="tiltWrap">
+      <div id="effectsSway">
+        <img id="effectsImg" src="camada_efeitos.png" alt="Efeitos mágicos">
+      </div>
 
-    <main class="palco" id="palco">
+      <img id="charImg" src="camada_corpo.png" alt="Personagem (corpo)">
 
-        <!-- CABEÇALHO -->
-        <header class="cabecalho">
+      <div class="eye eye-left"><div class="pupil" id="pupilL"></div></div>
+      <div class="eye eye-right"><div class="pupil" id="pupilR"></div></div>
 
-            <div class="logo-container">
-                <img
-                    class="logo"
-                    src="logo.png"
-                    alt="QrMagicAr"
-                >
-            </div>
+      <div class="blink blink-left" id="blinkL"></div>
+      <div class="blink blink-right" id="blinkR"></div>
 
-            <p class="subtitulo">
-               Transforme seus momentos em uma experiência mágica.
-            </p>
+      <svg id="mouthOverlay" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"></svg>
 
-        </header>
+      <div id="hairSway">
+        <img id="hairImg" src="camada_cabelo.png" alt="Personagem (cabelo)">
+      </div>
+    </div>
+  </div>
+</div>
 
+<div id="hint">mova o mouse • clique para trocar a expressão · cabelo e efeitos mágicos se movem em camadas separadas</div>
 
-        <!-- ÁREA PRINCIPAL -->
-        <section class="experiencia">
+<script>
+const tiltWrap   = document.getElementById('tiltWrap');
+const pupilL     = document.getElementById('pupilL');
+const pupilR     = document.getElementById('pupilR');
+const blinkL     = document.getElementById('blinkL');
+const blinkR     = document.getElementById('blinkR');
+const mouthSvg   = document.getElementById('mouthOverlay');
+const hairSway   = document.getElementById('hairSway');
+const effectsSway = document.getElementById('effectsSway');
 
-            <!-- PERSONAGEM -->
-            <div class="personagem-area">
+const MAX_TILT   = 10;   // graus
+const PUPIL_RANGE = 3;   // px de deslocamento da pupila
 
-                <div class="circulo-magico"></div>
+let targetTiltX = 0, targetTiltY = 0;
+let curTiltX = 0, curTiltY = 0;
 
-                <div
-                    id="personagemWrap"
-                    class="personagem-wrap"
-                >
+// estado do cabelo (segue o corpo com atraso / inércia, tipo "chicote")
+let hairRotCur = 0, hairXCur = 0;
+let lastMouseNX = 0, lastMouseNY = 0; // posição do mouse normalizada (-1..1)
+let effXCur = 0, effYCur = 0;
+const windClock0 = performance.now();
 
-                    <div
-                        id="personagem"
-                        class="personagem"
-                        aria-label="Personagem QrMagicAr"
-                    ></div>
+function onMove(clientX, clientY){
+  const rect = tiltWrap.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height*0.28; // referência: altura do rosto
+  const dx = clientX - cx;
+  const dy = clientY - cy;
 
-                </div>
+  // tilt da cabeça/corpo em direção ao cursor
+  const nx = Math.max(-1, Math.min(1, dx / (window.innerWidth/2)));
+  const ny = Math.max(-1, Math.min(1, dy / (window.innerHeight/2)));
+  targetTiltY = nx * MAX_TILT;
+  targetTiltX = -ny * MAX_TILT;
+  lastMouseNX = nx;
+  lastMouseNY = ny;
 
-            </div>
+  // pupilas seguindo o cursor
+  const angle = Math.atan2(dy, dx);
+  const px = Math.cos(angle) * PUPIL_RANGE;
+  const py = Math.sin(angle) * PUPIL_RANGE;
+  pupilL.style.transform = `translate(${px}px, ${py}px)`;
+  pupilR.style.transform = `translate(${px}px, ${py}px)`;
+}
 
+window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
+window.addEventListener('touchmove', e => {
+  if(e.touches[0]) onMove(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive:true});
 
-            <!-- TEXTO -->
-            <div class="conteudo">
+function animate(now){
+  curTiltX += (targetTiltX - curTiltX) * 0.08;
+  curTiltY += (targetTiltY - curTiltY) * 0.08;
+  tiltWrap.style.transform =
+    `rotateX(${curTiltX}deg) rotateY(${curTiltY}deg) translateZ(0)`;
 
-                <h1>
-                    Uma nova experiência
-                    <span>começa aqui</span>
-                </h1>
+  // cabelo: reage ao mesmo movimento, mas com mais atraso (inércia) e mais amplitude,
+  // além de um balanço contínuo tipo vento, para nunca ficar 100% parado
+  const wind = Math.sin((now - windClock0) / 1400) * 1.6;
+  const targetHairRot = -curTiltY * 1.4 + wind;
+  const targetHairX    = -lastMouseNX * 10;
+  hairRotCur += (targetHairRot - hairRotCur) * 0.035;
+  hairXCur   += (targetHairX   - hairXCur)   * 0.035;
+  hairSway.style.transform = `translateX(${hairXCur}px) rotate(${hairRotCur}deg)`;
 
-                <p class="descricao">
-                    Dê vida aos seus momentos e descubra
-                    uma nova forma de interagir com suas memórias.
-                </p>
+  // efeitos mágicos: giro lento e contínuo (como se orbitassem em volta dela),
+  // quase não reagem ao mouse — é uma "energia" flutuando no ar, não presa ao corpo
+  const spin = (now - windClock0) / 90;          // ângulo cresce sem parar, sem "salto"
+  const driftY = Math.sin((now - windClock0) / 2100) * 8;
+  const targetEffX = -lastMouseNX * 4;
+  effXCur += (targetEffX - effXCur) * 0.02;
+  effYCur = driftY;
+  effectsSway.style.transform =
+    `translate(${effXCur}px, ${effYCur}px) rotate(${spin * 0.06}deg) scale(1.02)`;
 
-                <p
-                    id="instrucao"
-                    class="instrucao"
-                >
-                    Clique no botão para começar a experiência.
-                </p>
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
 
-                <button
-                    id="btnIniciar"
-                    class="btn-iniciar"
-                    type="button"
-                >
-                    <span>✦</span>
-                    Começar experiência
-                </button>
+// piscar periodicamente
+function blink(){
+  blinkL.classList.remove('active'); void blinkL.offsetWidth; blinkL.classList.add('active');
+  blinkR.classList.remove('active'); void blinkR.offsetWidth; blinkR.classList.add('active');
+  setTimeout(blink, 2600 + Math.random()*3200);
+}
+setTimeout(blink, 1800);
 
-            </div>
+// expressões via SVG (clique para alternar)
+const expressions = {
+  neutro: '',
+  feliz: `<path d="M15,25 Q50,55 85,25 Q50,45 15,25 Z" fill="#7a2f2a" opacity="0.85"/>
+          <path d="M22,27 Q50,46 78,27" stroke="#fff" stroke-width="4" fill="none" opacity="0.9"/>`,
+  surpresa: `<ellipse cx="50" cy="32" rx="14" ry="18" fill="#7a2f2a"/>
+             <ellipse cx="50" cy="32" rx="8" ry="11" fill="#3a1414"/>`,
+  timida: `<path d="M20,20 Q50,32 80,20" stroke="#8a4a42" stroke-width="5" fill="none" stroke-linecap="round"/>`
+};
+const order = ['neutro','feliz','surpresa','timida'];
+let idx = 0;
 
-        </section>
-
-    </main>
-
-
-    <footer>
-        © 2026 QrMagicAr. Todos os direitos reservados.
-    </footer>
-
-
-    <script src="script.js"></script>
+tiltWrap.addEventListener('click', () => {
+  idx = (idx+1) % order.length;
+  const key = order[idx];
+  if(key === 'neutro'){
+    mouthSvg.classList.remove('show');
+    mouthSvg.innerHTML = '';
+  } else {
+    mouthSvg.innerHTML = expressions[key];
+    mouthSvg.classList.add('show');
+  }
+});
+</script>
 
 </body>
-
 </html>
