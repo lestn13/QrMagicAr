@@ -120,7 +120,7 @@ function mudarExpressao() {
 
 
     /*
-       Escolhemos algumas poses diferentes
+       Movimentos reais e suavis 
        para não ficar uma sequência mecânica.
     */
 
