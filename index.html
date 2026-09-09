@@ -10,22 +10,24 @@
 
     <title>QrMagicAr</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 
 <body>
 
     <div class="estrelas"></div>
 
-    <main class="palco">
+    <main class="palco" id="palco">
 
         <header class="cabecalho">
 
-            <img
-                class="logo"
-                src="logo.jpeg"
-                alt="QrMagicAr"
-            >
+            <div class="logo-wrap">
+                <img
+                    class="logo"
+                    src="logo.jpeg"
+                    alt="QrMagicAr"
+                >
+            </div>
 
             <h1>QrMagicAr</h1>
 
@@ -38,7 +40,10 @@
 
         <section class="experiencia">
 
-            <div class="personagem-wrap">
+            <div
+                class="personagem-wrap"
+                id="personagemWrap"
+            >
 
                 <img
                     id="personagem"
@@ -56,8 +61,11 @@
                     Uma nova experiência começa aqui
                 </h2>
 
-                <p class="instrucao">
-                    Mova o cursor pela tela e a personagem acompanhará seus movimentos.
+                <p
+                    class="instrucao"
+                    id="instrucao"
+                >
+                    Clique no botão para começar a experiência.
                 </p>
 
                 <button
@@ -65,7 +73,7 @@
                     class="btn-iniciar"
                     type="button"
                 >
-                    Começar experiência
+                    ✦ Começar experiência
                 </button>
 
             </div>
@@ -76,9 +84,7 @@
 
 
     <footer>
-
         © 2026 QrMagicAr. Todos os direitos reservados.
-
     </footer>
 
 
