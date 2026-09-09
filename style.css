@@ -12,30 +12,28 @@ body {
 
 body {
     background:
-        radial-gradient(circle at 50% 20%, #21083d 0%, #08000f 40%, #020106 100%);
+        radial-gradient(circle at 50% 15%, #25083f 0%, #090010 42%, #020106 100%);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
 
-/* =========================
-   ESTRELAS
-========================= */
+/* FUNDO */
 
 .estrelas {
     position: fixed;
     inset: 0;
+    z-index: 0;
     pointer-events: none;
 
     background-image:
         radial-gradient(circle, white 1px, transparent 1.5px),
-        radial-gradient(circle, #c88cff 1px, transparent 1.5px);
+        radial-gradient(circle, #c77dff 1px, transparent 1.5px);
 
-    background-size: 130px 130px, 190px 190px;
+    background-size: 120px 120px, 180px 180px;
     background-position: 20px 30px, 80px 100px;
 
     opacity: 0.55;
-    z-index: 0;
 }
 
 .brilho {
@@ -44,8 +42,9 @@ body {
     height: 450px;
     border-radius: 50%;
     filter: blur(110px);
-    opacity: 0.16;
+    opacity: .18;
     pointer-events: none;
+    z-index: 0;
 }
 
 .brilho-1 {
@@ -60,41 +59,35 @@ body {
     bottom: -180px;
 }
 
-/* =========================
-   PALCO
-========================= */
+
+/* PALCO */
 
 .palco {
     position: relative;
     z-index: 2;
 
-    min-height: calc(100vh - 55px);
+    width: 100%;
+    min-height: calc(100vh - 45px);
+
+    padding: 5px 35px 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding: 10px 35px 0;
 }
 
-/* =========================
-   CABEÇALHO
-========================= */
+
+/* LOGO */
 
 .cabecalho {
     width: 100%;
-    max-width: 1100px;
-
     text-align: center;
-
     flex-shrink: 0;
 }
 
-/* Caixa que recorta a logo */
-
 .logo-container {
-    width: 350px;
-    height: 150px;
+    width: 300px;
+    height: 120px;
 
     margin: 0 auto;
 
@@ -102,74 +95,55 @@ body {
     position: relative;
 
     filter:
-        drop-shadow(0 0 15px rgba(190, 80, 255, 0.5))
-        drop-shadow(0 0 30px rgba(80, 120, 255, 0.3));
+        drop-shadow(0 0 15px rgba(190, 80, 255, .55))
+        drop-shadow(0 0 30px rgba(70, 100, 255, .3));
 }
-
-/* Sua logo original é muito alta.
-   Por isso estamos recortando a parte correta. */
 
 .logo {
     position: absolute;
 
-    width: 350px;
-
+    width: 300px;
     height: auto;
 
     left: 0;
-    top: -105px;
+    top: -82px;
 
     display: block;
-
-    animation: logoFlutuar 4s ease-in-out infinite;
-}
-
-@keyframes logoFlutuar {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
 }
 
 .subtitulo {
-    margin-top: 0;
+    margin-top: 2px;
 
     font-size: 18px;
-    line-height: 1.4;
 
     color: #eee3ff;
 
     text-shadow:
-        0 0 10px rgba(210, 150, 255, 0.7);
+        0 0 12px rgba(210, 150, 255, .7);
 }
 
-/* =========================
-   ÁREA PRINCIPAL
-========================= */
+
+/* ÁREA PRINCIPAL */
 
 .experiencia {
     width: 100%;
-    max-width: 1250px;
+    max-width: 1200px;
 
     flex: 1;
 
     display: grid;
 
-    grid-template-columns: 48% 52%;
+    grid-template-columns: 45% 55%;
 
     align-items: center;
 
-    gap: 20px;
-
     padding: 0 10px;
+
+    min-height: 500px;
 }
 
-/* =========================
-   PERSONAGEM
-========================= */
+
+/* PERSONAGEM */
 
 .personagem-area {
     position: relative;
@@ -177,7 +151,6 @@ body {
     height: 500px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 }
@@ -185,16 +158,16 @@ body {
 .circulo-magico {
     position: absolute;
 
-    width: 420px;
-    height: 420px;
+    width: 390px;
+    height: 390px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(190, 80, 255, 0.25),
-            rgba(80, 40, 180, 0.08) 48%,
+            rgba(190,80,255,.25),
+            rgba(80,40,180,.08) 50%,
             transparent 72%
         );
 
@@ -204,39 +177,42 @@ body {
 }
 
 @keyframes pulsar {
+
     0%, 100% {
-        transform: scale(0.95);
-        opacity: 0.7;
+        transform: scale(.95);
+        opacity: .7;
     }
 
     50% {
-        transform: scale(1.07);
+        transform: scale(1.06);
         opacity: 1;
     }
 }
 
+
+/* RECORTE DA PERSONAGEM */
+
 .personagem-wrap {
     position: relative;
-
     z-index: 3;
 
-    width: 290px;
-    height: 465px;
+    width: 260px;
+    height: 415px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     transition:
-        transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        transform .3s cubic-bezier(.22,1,.36,1);
 }
 
-/* Sprite 3x3 */
+
+/* SPRITE 3x3 */
 
 .personagem {
-    width: 290px;
-    height: 465px;
+    width: 260px;
+    height: 415px;
 
     background-image: url("personagem.jpeg");
 
@@ -247,19 +223,18 @@ body {
     background-position: 50% 50%;
 
     filter:
-        drop-shadow(0 18px 25px rgba(0, 0, 0, 0.8))
-        drop-shadow(0 0 28px rgba(180, 100, 255, 0.5));
+        drop-shadow(0 18px 25px rgba(0,0,0,.8))
+        drop-shadow(0 0 30px rgba(180,100,255,.5));
 
     animation:
         personagemFlutuar 3.8s ease-in-out infinite,
         respirar 4.5s ease-in-out infinite;
 
     cursor: pointer;
-
-    transition: filter 0.4s ease;
 }
 
 @keyframes personagemFlutuar {
+
     0%, 100% {
         transform: translateY(0);
     }
@@ -270,6 +245,7 @@ body {
 }
 
 @keyframes respirar {
+
     0%, 100% {
         scale: 1;
     }
@@ -279,20 +255,14 @@ body {
     }
 }
 
-.personagem.experiencia-ativa {
-    filter:
-        drop-shadow(0 18px 25px rgba(0, 0, 0, 0.8))
-        drop-shadow(0 0 42px rgba(210, 120, 255, 0.8));
-}
 
-/* =========================
-   CONTEÚDO
-========================= */
+/* CONTEÚDO DA DIREITA */
 
 .conteudo {
+    width: 100%;
     max-width: 570px;
 
-    padding: 20px 30px;
+    padding: 20px 20px 20px 30px;
 }
 
 .conteudo h1 {
@@ -324,7 +294,7 @@ body {
     color: transparent;
 
     filter:
-        drop-shadow(0 0 12px rgba(180, 70, 255, 0.45));
+        drop-shadow(0 0 12px rgba(180,70,255,.45));
 }
 
 .descricao {
@@ -347,14 +317,13 @@ body {
     margin-bottom: 25px;
 }
 
-/* =========================
-   BOTÃO
-========================= */
+
+/* BOTÃO */
 
 .btn-iniciar {
     border: none;
 
-    padding: 18px 32px;
+    padding: 17px 30px;
 
     border-radius: 50px;
 
@@ -375,56 +344,44 @@ body {
         );
 
     box-shadow:
-        0 0 15px rgba(195, 55, 255, 0.6),
-        0 0 35px rgba(100, 100, 255, 0.35);
+        0 0 15px rgba(195,55,255,.65),
+        0 0 35px rgba(100,100,255,.35);
 
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.btn-iniciar span {
-    font-size: 21px;
-    margin-right: 8px;
+    transition: .25s ease;
 }
 
 .btn-iniciar:hover {
     transform: translateY(-4px) scale(1.03);
 
     box-shadow:
-        0 0 20px rgba(210, 70, 255, 0.8),
-        0 0 50px rgba(80, 120, 255, 0.5);
+        0 0 20px rgba(210,70,255,.8),
+        0 0 50px rgba(80,120,255,.5);
 }
 
-.btn-iniciar:active {
-    transform: scale(0.97);
-}
 
-/* =========================
-   RODAPÉ
-========================= */
+/* RODAPÉ */
 
 footer {
     position: relative;
-
     z-index: 3;
 
     width: 100%;
 
     text-align: center;
 
-    padding: 10px;
+    padding: 8px;
 
-    font-size: 14px;
+    font-size: 13px;
 
     color: #cbb8da;
 }
 
+
 /* =========================
-   TELAS MENORES
+   TABLET / NOTEBOOK MENOR
 ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
     .palco {
         padding-left: 15px;
@@ -432,63 +389,93 @@ footer {
     }
 
     .experiencia {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+
         gap: 0;
+
+        min-height: 470px;
     }
 
     .personagem-area {
         height: 440px;
     }
 
+    .personagem-wrap,
+    .personagem {
+        width: 225px;
+        height: 360px;
+    }
+
+    .circulo-magico {
+        width: 330px;
+        height: 330px;
+    }
+
     .conteudo {
-        text-align: center;
-        margin: 0 auto;
-        padding-top: 0;
+        padding-left: 10px;
     }
 
     .conteudo h1 {
-        font-size: 45px;
+        font-size: 42px;
     }
 
     .descricao {
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 17px;
     }
 }
+
 
 /* =========================
    CELULAR
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
+
+    .palco {
+        padding: 5px 15px 0;
+    }
 
     .logo-container {
-        width: 280px;
-        height: 125px;
+        width: 270px;
+        height: 110px;
     }
 
     .logo {
-        width: 280px;
-        top: -83px;
+        width: 270px;
+        top: -74px;
     }
 
     .subtitulo {
         font-size: 15px;
     }
 
+    .experiencia {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding-top: 20px;
+    }
+
     .personagem-area {
-        height: 390px;
+        height: 380px;
     }
 
     .personagem-wrap,
     .personagem {
-        width: 235px;
-        height: 375px;
+        width: 220px;
+        height: 350px;
     }
 
     .circulo-magico {
-        width: 320px;
-        height: 320px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .conteudo {
+        text-align: center;
+
+        padding: 10px 10px 20px;
     }
 
     .conteudo h1 {
@@ -496,6 +483,7 @@ footer {
     }
 
     .descricao {
-        font-size: 17px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
