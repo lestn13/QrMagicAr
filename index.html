@@ -3,10 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#05000d">
 
     <title>QrMagicAr</title>
 
@@ -16,20 +14,21 @@
 <body>
 
     <div class="estrelas"></div>
+    <div class="brilho brilho-1"></div>
+    <div class="brilho brilho-2"></div>
 
     <main class="palco" id="palco">
 
+        <!-- CABEÇALHO -->
         <header class="cabecalho">
 
-            <div class="logo-wrap">
+            <div class="logo-container">
                 <img
                     class="logo"
                     src="logo.jpeg"
                     alt="QrMagicAr"
                 >
             </div>
-
-            <h1>QrMagicAr</h1>
 
             <p class="subtitulo">
                 Transforme seus momentos em uma experiência mágica.
@@ -38,32 +37,46 @@
         </header>
 
 
+        <!-- ÁREA PRINCIPAL -->
         <section class="experiencia">
 
-            <div
-                class="personagem-wrap"
-                id="personagemWrap"
-            >
+            <!-- PERSONAGEM -->
+            <div class="personagem-area">
 
-                <img
-                    id="personagem"
-                    class="personagem"
-                    src="personagem.jpeg"
-                    alt="Personagem"
+                <div class="circulo-magico"></div>
+
+                <div
+                    id="personagemWrap"
+                    class="personagem-wrap"
                 >
+
+                    <div
+                        id="personagem"
+                        class="personagem"
+                        aria-label="Personagem QrMagicAr"
+                    ></div>
+
+                </div>
 
             </div>
 
 
+            <!-- TEXTO -->
             <div class="conteudo">
 
-                <h2>
-                    Uma nova experiência começa aqui
-                </h2>
+                <h1>
+                    Uma nova experiência
+                    <span>começa aqui</span>
+                </h1>
+
+                <p class="descricao">
+                    Dê vida aos seus momentos e descubra
+                    uma nova forma de interagir com suas memórias.
+                </p>
 
                 <p
-                    class="instrucao"
                     id="instrucao"
+                    class="instrucao"
                 >
                     Clique no botão para começar a experiência.
                 </p>
@@ -73,7 +86,8 @@
                     class="btn-iniciar"
                     type="button"
                 >
-                    ✦ Começar experiência
+                    <span>✦</span>
+                    Começar experiência
                 </button>
 
             </div>
