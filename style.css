@@ -221,6 +221,8 @@ body {
     background-size: 300% 300%;
 
     background-position: 50% 50%;
+    
+    mix-blend-mode: screen;
 
     filter:
         drop-shadow(0 18px 25px rgba(0,0,0,.8))
