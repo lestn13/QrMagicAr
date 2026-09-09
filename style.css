@@ -212,7 +212,7 @@ body {
 
     background-image: url("personagem.png");
 
-    background-repeat: repeat;
+    background-repeat:no-repeat;
 
     background-size: 300% 300%;
 
