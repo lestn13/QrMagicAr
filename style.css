@@ -11,10 +11,12 @@ body {
 }
 
 body {
-    background:
-        radial-gradient(circle at 50% 15%, #25083f 0%, #090010 42%, #020106 100%);
-    color: white;
     font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(105, 45, 190, 0.35), transparent 35%),
+        radial-gradient(circle at 80% 40%, rgba(50, 30, 150, 0.3), transparent 40%),
+        linear-gradient(135deg, #03000b, #100022 45%, #05000e);
     overflow-x: hidden;
 }
 
@@ -23,250 +25,224 @@ body {
 .estrelas {
     position: fixed;
     inset: 0;
-    z-index: 0;
     pointer-events: none;
-
+    z-index: 0;
     background-image:
-        radial-gradient(circle, white 1px, transparent 1.5px),
-        radial-gradient(circle, #c77dff 1px, transparent 1.5px);
-
-    background-size: 120px 120px, 180px 180px;
-    background-position: 20px 30px, 80px 100px;
-
-    opacity: 0.55;
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px),
+        radial-gradient(circle, rgba(180,120,255,.7) 1px, transparent 1px);
+    background-size: 95px 95px, 145px 145px;
+    background-position: 10px 20px, 60px 80px;
+    opacity: .65;
 }
 
 .brilho {
     position: fixed;
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%;
-    filter: blur(110px);
-    opacity: .18;
+    filter: blur(100px);
     pointer-events: none;
     z-index: 0;
 }
 
 .brilho-1 {
-    background: #a52cff;
-    top: -180px;
-    left: -150px;
+    left: -180px;
+    top: 30%;
+    background: rgba(145, 60, 255, .25);
 }
 
 .brilho-2 {
-    background: #315cff;
     right: -180px;
-    bottom: -180px;
+    bottom: 5%;
+    background: rgba(70, 100, 255, .18);
 }
-
 
 /* PALCO */
 
 .palco {
     position: relative;
-    z-index: 2;
-
+    z-index: 1;
     width: 100%;
-    min-height: calc(100vh - 45px);
-
-    padding: 5px 35px 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: calc(100vh - 55px);
+    padding: 25px 6% 30px;
 }
-
 
 /* LOGO */
 
 .cabecalho {
-    width: 100%;
     text-align: center;
-    flex-shrink: 0;
+    width: 100%;
 }
 
 .logo-container {
-   width: 100%;
-    max-width: 420px;
-    height: 130px;
+    width: 100%;
+    max-width: 470px;
+    height: 135px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
 .logo {
     position: static !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 470px;
     display: block;
-    width: 380px !important;
-    height: 120px !important;
-    max-width: 100%;
     object-fit: contain !important;
     object-position: center;
     margin: 0 auto;
 }
 
 .subtitulo {
-    margin-top: 2px;
-
-    font-size: 18px;
-
-    color: #eee3ff;
-
-    text-shadow:
-        0 0 12px rgba(210, 150, 255, .7);
+    margin-top: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: 0 0 15px rgba(180, 120, 255, .7);
 }
-
 
 /* ÁREA PRINCIPAL */
 
 .experiencia {
     width: 100%;
-    max-width: 1200px;
-
-    flex: 1;
+    max-width: 1250px;
+    margin: 15px auto 0;
 
     display: grid;
-
-    grid-template-columns: 45% 55%;
-
+    grid-template-columns: 48% 52%;
     align-items: center;
 
-    padding: 0 10px;
-
-    min-height: 500px;
+    min-height: 570px;
 }
-
 
 /* PERSONAGEM */
 
 .personagem-area {
     position: relative;
-
-    height: 500px;
+    width: 100%;
+    height: 560px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.personagem-wrap {
+    position: relative;
+    width: 410px;
+    height: 520px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: flutuar 4s ease-in-out infinite;
+    transition: transform .35s ease-out;
+    z-index: 3;
+}
+
+.personagem {
+    width: 100%;
+    height: 100%;
+
+    background-image: url("personagem.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    filter:
+        drop-shadow(0 15px 25px rgba(0, 0, 0, .65))
+        drop-shadow(0 0 25px rgba(190, 90, 255, .45));
+
+    transition: filter .4s ease;
+}
+
+.personagem.experiencia-ativa {
+    animation: brilhoPersonagem 2.5s ease-in-out infinite;
+}
+
+/* CÍRCULO MÁGICO */
+
 .circulo-magico {
     position: absolute;
+    width: 430px;
+    height: 430px;
 
-    width: 390px;
-    height: 390px;
+    border-radius: 50%;
+    border: 2px solid rgba(205, 110, 255, .25);
+
+    box-shadow:
+        0 0 30px rgba(180, 80, 255, .3),
+        inset 0 0 40px rgba(150, 70, 255, .15);
+
+    animation: girarMagia 18s linear infinite;
+
+    z-index: 1;
+}
+
+.circulo-magico::before,
+.circulo-magico::after {
+    content: "";
+    position: absolute;
+    inset: 25px;
+
+    border-radius: 50%;
+    border: 1px dashed rgba(100, 190, 255, .3);
+
+    animation: girarMagia 12s linear infinite reverse;
+}
+
+.circulo-magico::after {
+    inset: 55px;
+    border-color: rgba(255, 100, 240, .25);
+}
+
+/* EFEITO DE LUZ NO CHÃO */
+
+.personagem-area::after {
+    content: "";
+    position: absolute;
+
+    width: 380px;
+    height: 70px;
+
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 
     border-radius: 50%;
 
     background:
         radial-gradient(
-            circle,
-            rgba(190,80,255,.25),
-            rgba(80,40,180,.08) 50%,
-            transparent 72%
+            ellipse,
+            rgba(225, 110, 255, .75) 0%,
+            rgba(120, 70, 255, .35) 35%,
+            transparent 70%
         );
 
-    filter: blur(8px);
+    filter: blur(12px);
 
-    animation: pulsar 4s ease-in-out infinite;
+    animation: pulsarLuz 2.4s ease-in-out infinite;
+
+    z-index: 2;
 }
 
-@keyframes pulsar {
-
-    0%, 100% {
-        transform: scale(.95);
-        opacity: .7;
-    }
-
-    50% {
-        transform: scale(1.06);
-        opacity: 1;
-    }
-}
-
-
-/* RECORTE DA PERSONAGEM */
-
-.personagem-wrap {
-    position: relative;
-    z-index: 3;
-
-    width: 260px;
-    height: 415px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition:
-        transform .3s cubic-bezier(.22,1,.36,1);
-}
-
-
-/* SPRITE 3x3 */
-
-.personagem {
-    .personagem {
-    width: 260px;
-    height: 415px;
-    background-image: url("personagem.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    mix-blend-mode: screen;
-
-    filter:
-        drop-shadow(0 18px 25px rgba(0,0,0,.8))
-        drop-shadow(0 0 30px rgba(180,100,255,.5));
-
-    animation:
-        personagemFlutuar 3.8s ease-in-out infinite,
-        respirar 4.5s ease-in-out infinite;
-
-    cursor: pointer;
-}
-
-@keyframes personagemFlutuar {
-
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-}
-
-@keyframes respirar {
-
-    0%, 100% {
-        scale: 1;
-    }
-
-    50% {
-        scale: 1.015;
-    }
-}
-
-
-/* CONTEÚDO DA DIREITA */
+/* TEXTO */
 
 .conteudo {
-    width: 100%;
-    max-width: 570px;
-
-    padding: 20px 20px 20px 30px;
+    padding: 30px 20px 30px 35px;
+    max-width: 590px;
 }
 
 .conteudo h1 {
-    font-size: clamp(42px, 5vw, 68px);
-
-    line-height: 1.03;
-
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: 1.05;
     font-weight: 800;
 
-    letter-spacing: -2px;
+    text-shadow:
+        0 0 20px rgba(180, 100, 255, .25);
 
     margin-bottom: 25px;
 }
@@ -274,139 +250,227 @@ body {
 .conteudo h1 span {
     display: block;
 
-    background:
-        linear-gradient(
-            90deg,
-            #d43cff,
-            #a95cff,
-            #65b7ff
-        );
+    background: linear-gradient(
+        90deg,
+        #d85cff,
+        #8b6cff,
+        #48bfff
+    );
 
     -webkit-background-clip: text;
     background-clip: text;
-
     color: transparent;
 
-    filter:
-        drop-shadow(0 0 12px rgba(180,70,255,.45));
+    filter: drop-shadow(0 0 12px rgba(170, 80, 255, .5));
 }
 
 .descricao {
+    max-width: 520px;
+
     font-size: 20px;
+    line-height: 1.6;
 
-    line-height: 1.55;
-
-    color: #e4dced;
-
-    max-width: 500px;
-
-    margin-bottom: 20px;
-}
-
-.instrucao {
-    color: #c9bbd7;
-
-    font-size: 16px;
+    color: rgba(255,255,255,.82);
 
     margin-bottom: 25px;
 }
 
+.instrucao {
+    font-size: 16px;
+    color: rgba(220,200,255,.75);
+    margin-bottom: 22px;
+}
 
 /* BOTÃO */
 
 .btn-iniciar {
     border: none;
+    outline: none;
 
     padding: 17px 30px;
 
-    border-radius: 50px;
+    border-radius: 40px;
+
+    font-size: 17px;
+    font-weight: 700;
 
     color: white;
-
-    font-size: 18px;
-
-    font-weight: bold;
 
     cursor: pointer;
 
     background:
         linear-gradient(
-            100deg,
-            #c72cff,
-            #9745ff,
-            #50a9ff
+            90deg,
+            #a83cff,
+            #636cff,
+            #31bfff
         );
 
     box-shadow:
-        0 0 15px rgba(195,55,255,.65),
-        0 0 35px rgba(100,100,255,.35);
+        0 0 20px rgba(150, 70, 255, .55),
+        0 8px 30px rgba(40, 20, 100, .5);
 
-    transition: .25s ease;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.btn-iniciar span {
+    margin-right: 8px;
 }
 
 .btn-iniciar:hover {
-    transform: translateY(-4px) scale(1.03);
+    transform: translateY(-3px) scale(1.03);
 
     box-shadow:
-        0 0 20px rgba(210,70,255,.8),
-        0 0 50px rgba(80,120,255,.5);
+        0 0 30px rgba(190, 80, 255, .8),
+        0 12px 35px rgba(40, 20, 100, .6);
 }
 
+.btn-iniciar:active {
+    transform: scale(.98);
+}
 
 /* RODAPÉ */
 
 footer {
     position: relative;
-    z-index: 3;
+    z-index: 2;
 
     width: 100%;
 
     text-align: center;
 
-    padding: 8px;
+    padding: 15px;
+
+    color: rgba(255,255,255,.55);
 
     font-size: 13px;
-
-    color: #cbb8da;
 }
 
+/* ANIMAÇÕES */
 
-/* =========================
-   TABLET / NOTEBOOK MENOR
-========================= */
+@keyframes flutuar {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-@media (max-width: 850px) {
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes brilhoPersonagem {
+    0%, 100% {
+        filter:
+            drop-shadow(0 15px 25px rgba(0,0,0,.65))
+            drop-shadow(0 0 25px rgba(190,90,255,.45));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 15px 25px rgba(0,0,0,.65))
+            drop-shadow(0 0 45px rgba(220,100,255,.85));
+    }
+}
+
+@keyframes girarMagia {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulsarLuz {
+    0%, 100% {
+        opacity: .55;
+        transform: translateX(-50%) scale(.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.12);
+    }
+}
+
+/* CELULAR */
+
+@media (max-width: 900px) {
 
     .palco {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 15px 5% 25px;
+    }
+
+    .logo-container {
+        max-width: 390px;
+        height: 115px;
+    }
+
+    .subtitulo {
+        font-size: 16px;
     }
 
     .experiencia {
-        grid-template-columns: 1fr 1fr;
-
-        gap: 0;
-
-        min-height: 470px;
+        grid-template-columns: 1fr;
+        margin-top: 10px;
     }
 
     .personagem-area {
+        height: 470px;
+    }
+
+    .personagem-wrap {
+        width: 340px;
         height: 440px;
     }
 
-    .personagem-wrap,
-    .personagem {
-        width: 225px;
-        height: 360px;
-    }
-
     .circulo-magico {
-        width: 330px;
-        height: 330px;
+        width: 350px;
+        height: 350px;
     }
 
     .conteudo {
-        padding-left: 10px;
+        text-align: center;
+        padding: 10px;
+        margin: 0 auto;
+    }
+
+    .descricao {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .logo-container {
+        max-width: 330px;
+        height: 100px;
+    }
+
+    .subtitulo {
+        font-size: 14px;
+    }
+
+    .personagem-area {
+        height: 400px;
+    }
+
+    .personagem-wrap {
+        width: 290px;
+        height: 380px;
+    }
+
+    .circulo-magico {
+        width: 290px;
+        height: 290px;
+    }
+
+    .personagem-area::after {
+        width: 280px;
     }
 
     .conteudo h1 {
@@ -415,69 +479,5 @@ footer {
 
     .descricao {
         font-size: 17px;
-    }
-}
-
-
-/* =========================
-   CELULAR
-========================= */
-
-@media (max-width: 650px) {
-
-    .palco {
-        padding: 5px 15px 0;
-    }
-
-    .logo-container {
-        width: 270px;
-        height: 110px;
-    }
-
-    .logo {
-        width: 270px;
-        top: -74px;
-    }
-
-    .subtitulo {
-        font-size: 15px;
-    }
-
-    .experiencia {
-        grid-template-columns: 1fr;
-
-        min-height: auto;
-
-        padding-top: 20px;
-    }
-
-    .personagem-area {
-        height: 380px;
-    }
-
-    .personagem-wrap,
-    .personagem {
-        width: 220px;
-        height: 350px;
-    }
-
-    .circulo-magico {
-        width: 300px;
-        height: 300px;
-    }
-
-    .conteudo {
-        text-align: center;
-
-        padding: 10px 10px 20px;
-    }
-
-    .conteudo h1 {
-        font-size: 38px;
-    }
-
-    .descricao {
-        margin-left: auto;
-        margin-right: auto;
     }
 }
