@@ -516,3 +516,85 @@ footer {
         font-size: 15px;
     }
 }
+/* AJUSTE FINAL - LAYOUT IGUAL À REFERÊNCIA */
+
+@media (min-width: 501px) and (max-width: 800px) {
+
+    .palco {
+        padding: 8px 25px 10px;
+    }
+
+    .logo-container {
+        width: 190px;
+        height: 70px;
+    }
+
+    .logo {
+        width: 190px !important;
+        height: 70px !important;
+    }
+
+    .experiencia {
+        display: grid !important;
+        grid-template-columns: 48% 52% !important;
+        align-items: center;
+
+        width: 100%;
+        max-width: 700px;
+
+        min-height: 390px;
+
+        margin: 0 auto;
+    }
+
+    .personagem-area {
+        height: 360px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .personagem-wrap {
+        width: 210px !important;
+        height: 300px !important;
+    }
+
+    .circulo-magico {
+        width: 260px;
+        height: 260px;
+    }
+
+    .personagem-area::after {
+        width: 210px;
+        height: 30px;
+        bottom: 25px;
+    }
+
+    .conteudo {
+        padding: 0 5px 0 15px;
+        max-width: 330px;
+    }
+
+    .conteudo h1 {
+        font-size: 32px;
+        line-height: 1.02;
+        margin-bottom: 12px;
+    }
+
+    .descricao {
+        font-size: 12px;
+        line-height: 1.35;
+        margin-bottom: 10px;
+    }
+
+    .instrucao {
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+
+    .btn-iniciar {
+        padding: 9px 16px;
+        font-size: 10px;
+    }
+}
