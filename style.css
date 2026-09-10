@@ -148,8 +148,8 @@ body {
 .circulo-magico {
     position: absolute;
 
-    width: 360px;
-    height: 360px;
+    width: 225px;
+    height: 225px;
 
     border-radius: 50%;
 
@@ -197,8 +197,9 @@ body {
 .personagem-wrap {
     position: relative;
 
-   width: 210px;
-   height: 300px;
+    width: 175px !important;
+    height: 250px !important;
+}
     
     display: flex;
     justify-content: center;
